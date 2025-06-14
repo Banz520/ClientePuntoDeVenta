@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientePuntoDeVenta"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="720" Width="1280">
     <Grid>
+
+        <Button Content="Gestión de Productos" Click="AbrirProductosView"/>
+        <Button Content="Registrar Ventas" Click="AbrirVentasView"/>
+        <Button Content="Inventario" Click="AbrirInventarioView"/>
+        <Button Content="Sincronización" Click="AbrirSincronizacionView"/>
+
 
     </Grid>
 </Window>
