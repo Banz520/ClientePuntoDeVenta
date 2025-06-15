@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ClientePuntoDeVenta.Vistas;
 
 namespace ClientePuntoDeVenta
 {
@@ -20,5 +21,31 @@ namespace ClientePuntoDeVenta
         {
             InitializeComponent();
         }
+
+        private void AbrirProductos_Click(object sender, RoutedEventArgs e)
+        {
+            var ventana = new ProductosView();
+            ventana.Show();
+        }
+
+        private void AbrirVentas_Click(object sender, RoutedEventArgs e)
+        {
+            var ventana = new VentasView();
+            ventana.Show();
+        }
+
+        private void AbrirInventario_Click(object sender, RoutedEventArgs e)
+        {
+            var ventana = new InventarioView();
+            ventana.Show();
+        }
+
+        /*
+        private void AbrirSincronizacion_Click(object sender, RoutedEventArgs e)
+        {
+            var ventana = new SincronizacionView();
+            ventana.Show();
+        }
+        */
     }
 }

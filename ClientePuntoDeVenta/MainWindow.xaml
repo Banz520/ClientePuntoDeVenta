@@ -1,18 +1,33 @@
 ﻿<Window x:Class="ClientePuntoDeVenta.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ClientePuntoDeVenta"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280">
-    <Grid>
+        Title="Menú Principal - Punto de Venta" Height="720" Width="1280"
+        Background="#1E1E2F" Foreground="White" WindowStartupLocation="CenterScreen">
 
-        <Button Content="Gestión de Productos" Click="AbrirProductosView"/>
-        <Button Content="Registrar Ventas" Click="AbrirVentasView"/>
-        <Button Content="Inventario" Click="AbrirInventarioView"/>
-        <Button Content="Sincronización" Click="AbrirSincronizacionView"/>
+    <Grid Margin="20">
 
+        <TextBlock Text="Bienvenido al Sistema de Punto de Venta" 
+                   FontSize="24" FontWeight="Bold" Margin="0 50 0 20"/>
+        
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" Margin="0 15 0 15">
+            <TextBlock Text="Menú Principal" FontSize="28" FontWeight="Bold" TextAlignment="Center" Margin="0 0 0 20"/>
 
+            <Button Content="Gestión de Productos"
+                    Height="60" Background="#007ACC" Foreground="White" FontSize="16"
+                    Click="AbrirProductos_Click" Margin="10"/>
+
+            <Button Content="Registrar Ventas"
+                    Height="60" Background="#0099CC" Foreground="White" FontSize="16"
+                    Click="AbrirVentas_Click" Margin=" 10"/>
+
+            <Button Content="Inventario"
+                    Height="60" Background="#1F8DD6" Foreground="White" FontSize="16"
+                    Click="AbrirInventario_Click" Margin="10"/>
+
+            
+        </StackPanel>
+
+        <TextBlock Text="Desarrollado por Ian Alvarez, Juan Pablo Rivera y Angela Haro"
+                   FontSize="16" FontWeight="Normal" Foreground="Gray" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 10 0 0"/>
     </Grid>
 </Window>
