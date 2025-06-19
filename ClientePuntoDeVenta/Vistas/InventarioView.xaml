@@ -10,8 +10,8 @@
                   Background="#2A2A3D" Foreground="Black" BorderBrush="#444" RowBackground="#333" AlternatingRowBackground="#2A2A3D">
             <DataGrid.Resources>
                 <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="Background" Value="DarkGray"/>
-                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Background" Value="WhiteSmoke"/>
+                    <Setter Property="Foreground" Value="Black"/>
                     <Setter Property="FontWeight" Value="Bold"/>
                 </Style>
             </DataGrid.Resources>

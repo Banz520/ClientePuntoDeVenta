@@ -22,7 +22,7 @@ namespace ClientePuntoDeVenta.Servicios
             _clienteHttp = new HttpClient();
 
             // Cambia esta URL por la dirección real del servidor API
-            _clienteHttp.BaseAddress = new Uri("http://localhost:5000/api/");
+            _clienteHttp.BaseAddress = new Uri("http://localhost:7179/api/");
         }
 
         /*

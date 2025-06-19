@@ -15,6 +15,14 @@
 
         <DataGrid x:Name="ProductosGrid" Grid.Row="1" AutoGenerateColumns="False" Background="#2A2A3D" Foreground="White"
                   HeadersVisibility="Column" RowBackground="#333" AlternatingRowBackground="#2A2A3D" BorderBrush="#444">
+
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="WhiteSmoke"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
                 <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
