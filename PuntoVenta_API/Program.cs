@@ -1,29 +1,66 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// 1. Configuración de servicios
+// ----------------------------
+
+// Habilitar controladores API (necesario para tus endpoints REST)
+builder.Services.AddControllers();
+
+// Configurar CORS para permitir conexiones desde WPF
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()  // Permite cualquier origen (en producción deberías restringirlo)
+              .AllowAnyMethod()  // GET, POST, PUT, DELETE, etc.
+              .AllowAnyHeader(); // Cabeceras como Content-Type
+    });
+});
+
+// (Opcional) Si no usas Razor Pages, puedes eliminar esta línea
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+// 2. Configuración del pipeline HTTP
+// --------------------------------
+
+// Middleware para manejo de errores
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage(); // Páginas de error detalladas en desarrollo
+}
+else
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
+// Middleware para redirección HTTPS y archivos estáticos
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+// Middleware de enrutamiento
 app.UseRouting();
 
+// Middleware de autenticación/autorización
 app.UseAuthorization();
 
+// 3. Configuración de endpoints
+// ---------------------------
+
+// IMPORTANTE: El orden de estos middlewares es crucial
+
+// 1. Primero CORS
+app.UseCors("AllowAll");
+
+// 2. Luego los endpoints
+app.MapControllers(); // Para tus controladores API (ProductosController, VentasController)
+
+// (Opcional) Endpoint de prueba
+app.MapGet("/api/test", () => "¡API funciona!");
+
+// (Opcional) Si necesitas Razor Pages
 app.MapRazorPages();
 
-app.UseCors("AllowAll"); // Debe estar ANTES de MapControllers()
-app.MapControllers(); // Esto debe estar presente para enlazar los controladores API
-
-app.MapGet("/api/test", () => "¡API funciona!"); //Ruta de prueba
 app.Run();
