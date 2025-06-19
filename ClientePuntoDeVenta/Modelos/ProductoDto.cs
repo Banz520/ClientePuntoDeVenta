@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace ClientePuntoDeVenta.Modelos
 {
-    internal class Venta
+    public class ProductoDto
     {
         public int Id { get; set; }
-        public List<VentaDetalle> Detalles { get; set; }
-        public DateTime Fecha { get; set; }
+        public string Nombre { get; set; }
+        public int Cantidad { get; set; }
+        public decimal Precio { get; set; }
     }
 }

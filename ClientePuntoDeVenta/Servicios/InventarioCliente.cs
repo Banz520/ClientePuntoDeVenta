@@ -1,62 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
+using System.Net.Http.Json;
+using System.Text.Json;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using ClientePuntoDeVenta.Modelos;
 
-namespace ClientePuntoDeVenta.Servicios
+public class InventarioCliente
 {
-    
-    //Clase que permite comunicarse con el servidor Web API RESTful para obtener productos y registrar ventas.
-    
-    public class InventarioCliente
+    private readonly HttpClient _client;
+
+    public InventarioCliente()
     {
-        // Instancia de HttpClient para realizar peticiones HTTP al servidor
-        private readonly HttpClient _clienteHttp;
-
-        
-        // Constructor: inicializa el cliente HTTP y establece la URL base del API.
-        public InventarioCliente()
-        {
-            _clienteHttp = new HttpClient();
-
-            // Cambia esta URL por la dirección real del servidor API
-            _clienteHttp.BaseAddress = new Uri("http://localhost:7179/api/");
-        }
-
-        /*
-        Realiza una solicitud GET a la API para obtener la lista de productos.
-        Devuelve la respuesta en formato JSON como cadena.
-        */
-
-        public async Task<string> ObtenerProductosAsync()
-        {
-            // Se hace la solicitud GET al endpoint /productos
-            HttpResponseMessage respuesta = await _clienteHttp.GetAsync("productos");
-
-            // Si hubo error, lanza una excepción
-            respuesta.EnsureSuccessStatusCode();
-
-            // Devuelve el contenido de la respuesta como string
-            return await respuesta.Content.ReadAsStringAsync();
-        }
-
-        /*
-        Envía los datos de una venta al servidor como JSON mediante POST.
-        <param name="ventaJson">La venta en formato JSON</param>
-        */
-
-        public async Task EnviarVentaAsync(string ventaJson)
-        {
-            // Crea el contenido de la solicitud HTTP con tipo JSON
-            var contenido = new StringContent(ventaJson, Encoding.UTF8, "application/json");
-
-            // Envía la solicitud POST al endpoint /ventas
-            HttpResponseMessage respuesta = await _clienteHttp.PostAsync("ventas", contenido);
-
-            // Si hubo error, lanza una excepción
-            respuesta.EnsureSuccessStatusCode();
-        }
+        _client = new HttpClient();
+        _client.BaseAddress = new Uri("https://localhost:7299/api/");
     }
+
+    // GET /productos
+    public async Task<List<ProductoDto>> ObtenerProductosAsync()
+        => await _client.GetFromJsonAsync<List<ProductoDto>>("productos");
+
+    // GET /productos/{id}
+    public async Task<ProductoDto> ObtenerProductoPorIdAsync(int id)
+        => await _client.GetFromJsonAsync<ProductoDto>($"productos/{id}");
+
+    // POST /productos
+    public async Task CrearProductoAsync(ProductoDto producto)
+    {
+        var response = await _client.PostAsJsonAsync("productos", producto);
+        response.EnsureSuccessStatusCode();
+    }
+
+    // PUT /productos/{id}
+    public async Task ActualizarProductoAsync(int id, ProductoDto producto)
+    {
+        var response = await _client.PutAsJsonAsync($"productos/{id}", producto);
+        response.EnsureSuccessStatusCode();
+    }
+
+    // DELETE /productos/{id}
+    public async Task EliminarProductoAsync(int id)
+    {
+        var response = await _client.DeleteAsync($"productos/{id}");
+        response.EnsureSuccessStatusCode();
+    }
+
+    // POST /ventas
+    public async Task RegistrarVentaAsync(VentaDto venta)
+    {
+        var response = await _client.PostAsJsonAsync("ventas", venta);
+        response.EnsureSuccessStatusCode();
+    }
+
+    // GET /inventario
+    public async Task<List<ProductoDto>> ObtenerInventarioAsync()
+        => await _client.GetFromJsonAsync<List<ProductoDto>>("inventario");
 }
