@@ -107,7 +107,8 @@
             <Grid Margin="0,40,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <!-- Encabezado -->
@@ -124,24 +125,47 @@
                 </StackPanel>
 
                 <!-- Botones de acción -->
-                <WrapPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button Style="{StaticResource ModernButton}"
-                            Click="BtnInventario_Click">
-                        <StackPanel Orientation="Horizontal">
-                            
-                            <TextBlock Text="Ver Inventario" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="1" Margin="20"  HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                    <Button Style="{StaticResource ModernButton}" Click="BtnProductos_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                          
+                            <TextBlock Text="Lista de Productos" VerticalAlignment="Center"/>
+                            <Image Source="/Imagenes/icon_productos.png" Width="30" Height="auto" HorizontalAlignment="Right" Margin="8"/>
                         </StackPanel>
+
                     </Button>
 
-                    <Button Style="{StaticResource ModernButton}">
-                        <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource ModernButton}" Click="BtnAgregarProducto_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                            <TextBlock Text="Agregar Productos" VerticalAlignment="Center"/>
+                            <Image Source="/Imagenes/icon_agregar.png" Width="30" Height="auto" HorizontalAlignment="Right" Margin="8"/>
                             
-                            <TextBlock Text="Realizar Venta" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
 
                     
-                </WrapPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+
+
+                    <Button Style="{StaticResource ModernButton}" Click="BtnVerInventario_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                            <TextBlock Text="Ver Inventario" VerticalAlignment="Center"/>
+                            <Image Source="/Imagenes/icon_inventario.png" Width="30" Height="auto" HorizontalAlignment="Right" Margin="8"/>
+                            
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource ModernButton}" Click="BtnRegistrarVenta_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock Text="Registrar Venta" VerticalAlignment="Center"/>
+                            <Image Source="/Imagenes/icon_ventas.png" Width="30" Height="auto" HorizontalAlignment="Right" Margin="8"/>
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
             </Grid>
         </Grid>
     </Border>

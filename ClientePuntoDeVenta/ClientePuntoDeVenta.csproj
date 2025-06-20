@@ -9,7 +9,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Imagenes\icon_agregar.png" />
+    <None Remove="Imagenes\icon_inventario.png" />
+    <None Remove="Imagenes\icon_productos.png" />
+    <None Remove="Imagenes\icon_ventas.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Servicios\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Imagenes\icon_agregar.png" />
+    <Resource Include="Imagenes\icon_inventario.png" />
+    <Resource Include="Imagenes\icon_productos.png" />
+    <Resource Include="Imagenes\icon_ventas.png" />
   </ItemGroup>
 
 </Project>
