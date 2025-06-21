@@ -1,0 +1,110 @@
+﻿<Window x:Class="ClientePuntoDeVenta.Vistas.RegistrarVentaView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Registrar Venta"
+        WindowState="Maximized"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Height="720" 
+        Width="1280"
+        Background="#1E1E2F"
+        Foreground="White">
+
+    <StackPanel>
+        <!-- Barra de título -->
+        <DockPanel Background="#3A3A5A" Height="60" LastChildFill="False">
+            <TextBlock Text="REGISTRAR VENTA" 
+                  FontSize="18" 
+                  FontWeight="Bold"
+                  VerticalAlignment="Center"
+                  Margin="20,0"/>
+
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                <Button Content="×" 
+                   FontSize="20" 
+                   Width="60" 
+                   Height="60"
+                   Background="MediumVioletRed" 
+                   Foreground="White" 
+                   BorderThickness="0"
+                   Click="CerrarVentana_Click"/>
+            </StackPanel>
+        </DockPanel>
+
+        <!-- Contenido principal -->
+        <StackPanel Margin="80" VerticalAlignment="Center">
+            <!-- Campo ProductoId -->
+            <StackPanel Orientation="Horizontal" Margin="0,20">
+                <TextBlock Text="ID Producto:" 
+                      Width="160"
+                      VerticalAlignment="Center"
+                      FontSize="16"/>
+                <TextBox Text="{Binding ProductoId, UpdateSourceTrigger=PropertyChanged}" 
+                    Width="300"
+                    Height="40"
+                    Background="#3A3A5A"
+                    Foreground="White"
+                    BorderBrush="#6C5B7B"
+                    CaretBrush="White"/>
+            </StackPanel>
+
+            <!-- Campo NombreProducto -->
+            <StackPanel Orientation="Horizontal" Margin="0,20">
+                <TextBlock Text="Nombre Producto:" 
+                      Width="160"
+                      VerticalAlignment="Center"
+                      FontSize="16"/>
+                <TextBox Text="{Binding NombreProducto, UpdateSourceTrigger=PropertyChanged}" 
+                    Width="300"
+                    Height="40"
+                    Background="#3A3A5A"
+                    Foreground="White"
+                    BorderBrush="#6C5B7B"
+                    CaretBrush="White"/>
+            </StackPanel>
+
+            <!-- Campo CantidadVendida -->
+            <StackPanel Orientation="Horizontal" Margin="0,20">
+                <TextBlock Text="Cantidad:" 
+                      Width="160"
+                      VerticalAlignment="Center"
+                      FontSize="16"/>
+                <TextBox Text="{Binding CantidadVendida, UpdateSourceTrigger=PropertyChanged}" 
+                    Width="300"
+                    Height="40"
+                    Background="#3A3A5A"
+                    Foreground="White"
+                    BorderBrush="#6C5B7B"
+                    CaretBrush="White"/>
+            </StackPanel>
+
+            <!-- Botón Registrar Venta -->
+            <Button 
+               Width="300"
+               Height="80"
+               FontSize="24"
+               FontWeight="Bold"
+               HorizontalAlignment="Center"
+               Margin="0,40,0,0"
+               Background="#50C878"
+               BorderBrush="#8D6BB5"
+               Foreground="White"
+               Click="RegistrarVenta_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                         BorderBrush="{TemplateBinding BorderBrush}"
+                         BorderThickness="1"
+                         CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="Registrar Venta" VerticalAlignment="Center"/>
+                    <Image Source="/Imagenes/icon_ventas.png" Width="30" Height="auto" HorizontalAlignment="Right" Margin="8"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

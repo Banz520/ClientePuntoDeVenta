@@ -15,20 +15,16 @@ namespace ClientePuntoDeVenta
             this.WindowState = WindowState.Minimized;
         }
 
-        private void MaximizeWindow(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = this.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
-        }
 
-        private void CloseWindow(object sender, RoutedEventArgs e)
+        private void CerrarVentana_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
         private void BtnProductos_Click(object sender, RoutedEventArgs e)
         {
-            var productosWindow = new ProductosView();
-            productosWindow.ShowDialog();
+            var ventana = new ProductosView();
+            ventana.ShowDialog();
         }
 
         private void BtnAgregarProducto_Click(object sender, RoutedEventArgs e)
@@ -39,15 +35,15 @@ namespace ClientePuntoDeVenta
 
         private void BtnRegistrarVenta_Click(object sender, RoutedEventArgs e)
         {
-            //cambiar a la vista de registrar venta
-            var ventana = new Vistas.AgregarProductoView();
+            
+            var ventana = new Vistas.RegistrarVentaView();
             ventana.ShowDialog();
         }
 
         private void BtnVerInventario_Click(object sender, RoutedEventArgs e)
         {
-            var inventarioWindow = new InventarioView();
-            inventarioWindow.ShowDialog();
+            var ventana = new InventarioView();
+            ventana.ShowDialog();
         }
     }
 }

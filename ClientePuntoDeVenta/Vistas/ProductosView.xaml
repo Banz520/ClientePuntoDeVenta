@@ -131,7 +131,8 @@
 
 
                 <!-- DataGrid -->
-                <DataGrid Grid.Row="1" 
+                <DataGrid Grid.Row="1"
+                          Margin="15"
                           ItemsSource="{Binding Productos}" 
                           Style="{StaticResource ModernDataGrid}"
                           ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"

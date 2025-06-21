@@ -2,23 +2,28 @@
 using PuntoVenta_API.Models;
 using System.Collections.Generic;
 
+
+
 // Decorador que marca esta clase como un controlador API
 [ApiController]
 // Establece la ruta base para los endpoints: api/ventas
 [Route("api/[controller]")]
 public class VentasController : ControllerBase
 {
+
     // Lista estática en memoria para almacenar ventas (simulación de base de datos)
     private static List<Venta> Ventas = new List<Venta>();
 
     // Referencia a la lista de productos (debería ser inyectada en una aplicación real)
-    private readonly List<Producto> Productos;
+    private readonly List<Producto> _productos;
 
-    // Constructor (en una aplicación real usaría inyección de dependencias)
     public VentasController(List<Producto> productos)
     {
-        Productos = productos;
+        _productos = productos;
     }
+
+   
+    
 
     // POST: api/ventas
     // Registra una nueva venta y actualiza el inventario
@@ -35,7 +40,7 @@ public class VentasController : ControllerBase
         foreach (var detalle in venta.Detalles)
         {
             // Busca el producto en el inventario
-            var producto = Productos.FirstOrDefault(p => p.Id == detalle.ProductoId);
+            var producto = _productos.FirstOrDefault(p => p.Id == detalle.ProductoId);
 
             // Verifica disponibilidad
             if (producto != null && producto.Cantidad >= detalle.Cantidad)

@@ -1,3 +1,5 @@
+using PuntoVenta_API.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // 1. Configuración de servicios
@@ -17,8 +19,11 @@ builder.Services.AddCors(options =>
     });
 });
 
-// (Opcional) Si no usas Razor Pages, puedes eliminar esta línea
+
 builder.Services.AddRazorPages();
+// En Program.cs o Startup.cs, antes de builder.Build()
+builder.Services.AddSingleton<List<Producto>>();
+
 
 var app = builder.Build();
 
@@ -57,10 +62,10 @@ app.UseCors("AllowAll");
 // 2. Luego los endpoints
 app.MapControllers(); // Para tus controladores API (ProductosController, VentasController)
 
-// (Opcional) Endpoint de prueba
+//  Endpoint de prueba
 app.MapGet("/api/test", () => "¡API funciona!");
 
-// (Opcional) Si necesitas Razor Pages
+
 app.MapRazorPages();
 
 app.Run();

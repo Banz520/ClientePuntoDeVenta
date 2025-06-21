@@ -16,8 +16,12 @@ public class ProductosController : ControllerBase
     private static List<Producto> Productos = new List<Producto>
     {
         // Datos de ejemplo iniciales
-        new Producto { Id = 1, Nombre = "Producto 1", Cantidad = 50, Precio = 10.0m },
-        new Producto { Id = 2, Nombre = "Producto 2", Cantidad = 30, Precio = 15.0m }
+        new Producto { Id = 1, Nombre = "Resistencia", Cantidad = 80, Precio = 2.0m },
+        new Producto { Id = 2, Nombre = "Capacitor", Cantidad = 30, Precio = 8.0m },
+        new Producto { Id = 3, Nombre = "Motor 5V", Cantidad = 20, Precio = 20.0m },
+        new Producto { Id = 4, Nombre = "LED Rojo", Cantidad = 45, Precio = 5.0m },
+        new Producto { Id = 5, Nombre = "Diodo Rectificador", Cantidad = 30, Precio = 4.0m },
+        new Producto { Id = 6, Nombre = "Transistor NPN", Cantidad = 16, Precio = 12.0m }
     };
 
     // GET: api/productos

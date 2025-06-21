@@ -12,6 +12,7 @@ public class InventarioCliente
     public InventarioCliente()
     {
         _client = new HttpClient();
+        //Si estás usando una API local, asegúrate de que la URL sea correcta, verificando el puerto asignado al ejecutar la API/Solucion
         _client.BaseAddress = new Uri("https://localhost:7299/api/");
     }
 
@@ -47,6 +48,7 @@ public class InventarioCliente
     // POST /ventas
     public async Task RegistrarVentaAsync(VentaDto venta)
     {
+
         var response = await _client.PostAsJsonAsync("ventas", venta);
         response.EnsureSuccessStatusCode();
     }
