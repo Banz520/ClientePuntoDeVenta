@@ -28,5 +28,19 @@ namespace ClientePuntoDeVenta.Vistas
         {
             this.Close();
         }
+
+        private void Ayuda_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(
+                "Para registrar una venta:\n\n" +
+                "- El id debe corresponder a un producto existente.\n" +
+                "- La cantidad debe ser un número entero mayor o igual a 0.\n\n" +
+                
+                "Asegúrate de ingresar datos válidos antes de hacer clic en 'Registrar Venta'.",
+                "Ayuda - Registrar Venta",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information
+            );
+        }
     }
 }

@@ -20,10 +20,18 @@
                Margin="15,0"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
+                <!-- Botón de ayuda -->
+                <Button Style="{StaticResource WindowControlButtonStyle}"
+                     Click="Ayuda_Click"
+                     Background="{StaticResource Botones}"
+                     ToolTip="Ayuda sobre esta ventana">
+                    <TextBlock Text="?" FontSize="20" FontWeight="Bold"/>
+                </Button>
                 <!-- Botones con estilos modulares -->
                 <Button Style="{StaticResource WindowControlButtonStyle}" 
-                Click="MinimizarVentana_Click" 
-                Background="{StaticResource Minimizar}">
+                        Click="MinimizarVentana_Click" 
+                        Background="{StaticResource Minimizar}"
+                        ToolTip="Minimizar Ventana">
                     <TextBlock Text="_" FontSize="20"/>
                 </Button>
 
@@ -31,12 +39,13 @@
                 Click="CerrarVentana_Click"
                 Background="{StaticResource Cerrar}"
                 Content="×" 
-                FontSize="20"/>
+                FontSize="20"
+                ToolTip="Cerrar Ventana"/>
             </StackPanel>
         </DockPanel>
 
         <!-- Contenido principal -->
-        <StackPanel Margin="80" VerticalAlignment="Center">
+        <StackPanel Margin="80" VerticalAlignment="Center" HorizontalAlignment="Center">
             <!-- Campo ProductoId -->
             <StackPanel Orientation="Horizontal" Margin="0,20">
                 <TextBlock Text="ID Producto:" 

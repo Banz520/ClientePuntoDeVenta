@@ -10,7 +10,7 @@
         Background="{StaticResource Fondo}"
         Foreground="White">
 
-    <StackPanel>
+    <StackPanel Orientation="Vertical">
         <!-- Barra de título con estilo modular -->
         <DockPanel Style="{StaticResource TitleBarStyle}">
             
@@ -21,24 +21,32 @@
                Margin="15,0"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
-                
+                <!-- Botón de ayuda -->
+                <Button Style="{StaticResource WindowControlButtonStyle}"
+                        Click="Ayuda_Click"
+                        Background="{StaticResource Botones}"
+                        ToolTip="Ayuda sobre esta ventana">
+                    <TextBlock Text="?" FontSize="20" FontWeight="Bold"/>
+                </Button>
                 <!-- Botones con estilos modulares -->
                 <Button Style="{StaticResource WindowControlButtonStyle}" 
                     Click="MinimizarVentana_Click" 
                     Background="{StaticResource Minimizar}"
-                    Content="_" FontSize="20"/>
+                    Content="_" FontSize="20"
+                    ToolTip="Minimizar esta ventana"/>
 
                 <Button Style="{StaticResource WindowControlButtonStyle}"
                     Click="CerrarVentana_Click"
                     Background="{StaticResource Cerrar}"
                     Content="×" 
-                    FontSize="20"/>
+                    FontSize="20"
+                    ToolTip="Cerrar esta ventana"/>
                 
             </StackPanel>
         </DockPanel>
 
         <!-- Contenido principal -->
-        <StackPanel Margin="80" VerticalAlignment="Center">
+        <StackPanel Margin="80" VerticalAlignment="Center" HorizontalAlignment="Center">
             <!-- Campo Nombre -->
             <StackPanel Orientation="Horizontal" Margin="0,20">
                 <TextBlock Text="Nombre:" 
@@ -91,7 +99,11 @@
                 </StackPanel>
 
             </Button>
+            
 
         </StackPanel>
+
+        
     </StackPanel>
+    
 </Window>

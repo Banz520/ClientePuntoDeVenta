@@ -32,5 +32,20 @@ namespace ClientePuntoDeVenta.Vistas
         {
 
         }
+
+        private void Ayuda_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(
+                "Para agregar un producto:\n\n" +
+                "- El nombre no puede estar vacío ni contener números.\n" +
+                "- La cantidad debe ser un número entero mayor o igual a 0.\n" +
+                "- El precio debe ser un número mayor o igual a 0 (no se permiten valores negativos).\n\n" +
+                "Asegúrate de ingresar datos válidos antes de hacer clic en 'Agregar Producto'.",
+                "Ayuda - Agregar Producto",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information
+            );
+        }
+
     }
 }
