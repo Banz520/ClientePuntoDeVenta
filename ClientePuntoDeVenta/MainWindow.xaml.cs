@@ -10,7 +10,7 @@ namespace ClientePuntoDeVenta
             InitializeComponent();
         }
 
-        private void MinimizeWindow(object sender, RoutedEventArgs e)
+        private void MinimizarVentana_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
         }

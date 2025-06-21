@@ -17,51 +17,7 @@
             <GradientStop Color="#3A3A5A" Offset="1"/>
         </LinearGradientBrush>
 
-        <Style TargetType="Button" x:Key="ModernButton">
-            <Setter Property="Background" Value="#3A3A5A"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#6C5B7B"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="Medium"/>
-            <Setter Property="Height" Value="60"/>
-            <Setter Property="Width" Value="220"/>
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" 
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="8">
-                            <Grid>
-                                <Rectangle x:Name="hoverEffect" Fill="#20FFFFFF" Opacity="0" RadiusX="8" RadiusY="8"/>
-                                <ContentPresenter x:Name="contentPresenter" 
-                                                ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                Content="{TemplateBinding Content}"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                Margin="{TemplateBinding Padding}"/>
-                            </Grid>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#4A4A6A"/>
-                                <Setter Property="BorderBrush" Value="#8D6BB5"/>
-                                <Setter TargetName="hoverEffect" Property="Opacity" Value="1"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#2A2A4A"/>
-                                <Setter Property="BorderBrush" Value="#9C27B0"/>
-                                <Setter TargetName="hoverEffect" Property="Opacity" Value="0.5"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+       
 
         <Style TargetType="Button" x:Key="WindowControlButton">
             <Setter Property="Background" Value="Transparent"/>
@@ -81,30 +37,32 @@
         </Style>
     </Window.Resources>
 
-    <Border Background="#1E1E2F" CornerRadius="15">
+    <Border Background="{StaticResource Fondo}" CornerRadius="15">
         <Grid>
-            <!-- Barra de título personalizada -->
-            <DockPanel Background="{StaticResource TitleBarBrush}" Height="60" VerticalAlignment="Top">
+            <!-- Barra de título con estilo modular -->
+            <DockPanel Style="{StaticResource TitleBarStyle}">
                 <TextBlock Text="Menú Principal - Punto de Venta" 
                            Foreground="White" 
                            FontSize="16"
                            VerticalAlignment="Center"
                            Margin="15,0"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
-                    <Button Style="{StaticResource WindowControlButton}" Click="MinimizeWindow" Background="MediumPurple" Height="60" Width="60">
-                        <TextBlock Text="_" FontSize="20" />
-                    </Button>
 
-                    <Button Content="×" 
-                       FontSize="20" 
-                       Width="60" 
-                       Height="60"
-                       Background="MediumVioletRed" 
-                       Foreground="White" 
-                       BorderThickness="0"
-                       Click="CerrarVentana_Click"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
+                    <!-- Botones con estilos modulares -->
+                    <Button Style="{StaticResource WindowControlButtonStyle}" 
+                            Click="MinimizarVentana_Click" 
+                            Background="{StaticResource Minimizar}"
+                            Content="_" FontSize="20"/>
+                    
+
+                    <Button Style="{StaticResource WindowControlButtonStyle}"
+                            Click="CerrarVentana_Click"
+                            Background="{StaticResource Cerrar}"
+                            Content="×" 
+                            FontSize="20"/>
                 </StackPanel>
             </DockPanel>
+
 
             <!-- Contenido principal -->
             <Grid Margin="0,40,0,0">
@@ -115,7 +73,7 @@
                 </Grid.RowDefinitions>
 
                 <!-- Encabezado -->
-                <StackPanel Grid.Row="0" Margin="20" HorizontalAlignment="Center">
+                <StackPanel Grid.Row="0" Margin="40" HorizontalAlignment="Center">
                     <TextBlock Text="Sistema Punto de Venta" 
                                Foreground="White" 
                                FontSize="28"
@@ -129,7 +87,7 @@
 
                 <!-- Botones de acción -->
                 <StackPanel Grid.Row="1" Margin="20"  HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                    <Button Style="{StaticResource ModernButton}" Click="BtnProductos_Click">
+                    <Button Style="{StaticResource BotonAzul}" Click="BtnProductos_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                           
                             <TextBlock Text="Lista de Productos" VerticalAlignment="Center"/>
@@ -138,7 +96,7 @@
 
                     </Button>
 
-                    <Button Style="{StaticResource ModernButton}" Click="BtnAgregarProducto_Click">
+                    <Button Style="{StaticResource BotonAzul}" Click="BtnAgregarProducto_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
                             <TextBlock Text="Agregar Productos" VerticalAlignment="Center"/>
@@ -152,7 +110,7 @@
                 <StackPanel Grid.Row="2" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
 
 
-                    <Button Style="{StaticResource ModernButton}" Click="BtnVerInventario_Click">
+                    <Button Style="{StaticResource BotonAzul}" Click="BtnVerInventario_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
                             <TextBlock Text="Ver Inventario" VerticalAlignment="Center"/>
@@ -161,7 +119,7 @@
                         </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource ModernButton}" Click="BtnRegistrarVenta_Click">
+                    <Button Style="{StaticResource BotonAzul}" Click="BtnRegistrarVenta_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBlock Text="Registrar Venta" VerticalAlignment="Center"/>
                             <Image Source="/Imagenes/icon_ventas.png" Width="30" Height="auto" HorizontalAlignment="Right" Margin="8"/>

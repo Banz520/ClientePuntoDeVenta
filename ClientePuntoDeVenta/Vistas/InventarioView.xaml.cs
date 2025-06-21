@@ -12,12 +12,12 @@ namespace ClientePuntoDeVenta.Vistas
             DataContext = new InventarioViewModel();
         }
 
-        private void MinimizeWindow(object sender, RoutedEventArgs e)
+        private void MinimizarVentana_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
         }
 
-        private void CloseWindow(object sender, RoutedEventArgs e)
+        private void CerrarVentana_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

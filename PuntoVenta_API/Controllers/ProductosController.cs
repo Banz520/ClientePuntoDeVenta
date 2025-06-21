@@ -13,7 +13,7 @@ public class ProductosController : ControllerBase
 {
     // Lista estática en memoria que simula una base de datos temporal
     // En una aplicación real, esto sería reemplazado por un contexto de base de datos
-    private static List<Producto> Productos = new List<Producto>
+    public static List<Producto> Productos = new List<Producto>
     {
         // Datos de ejemplo iniciales
         new Producto { Id = 1, Nombre = "Resistencia", Cantidad = 80, Precio = 2.0m },

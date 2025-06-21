@@ -14,12 +14,12 @@ namespace ClientePuntoDeVenta.Vistas
         }
 
         // Opcional: métodos para minimizar/cerrar la ventana si tienes botones personalizados
-        private void MinimizeWindow(object sender, RoutedEventArgs e)
+        private void MinimizarVentana_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
         }
 
-        private void CloseWindow(object sender, RoutedEventArgs e)
+        private void CerrarVentana_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }

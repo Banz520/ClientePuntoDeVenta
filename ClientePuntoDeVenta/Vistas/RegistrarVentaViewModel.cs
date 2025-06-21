@@ -6,6 +6,8 @@ using System.Windows;
 using System.Collections.Generic;
 using ClientePuntoDeVenta.Modelos;
 using System.Text.Json;
+using System.Net.Http;
+using System.Net;
 
 namespace ClientePuntoDeVenta.Vistas
 {
@@ -34,54 +36,74 @@ namespace ClientePuntoDeVenta.Vistas
             set { _cantidadVendida = value; OnPropertyChanged(); }
         }
 
-        /// <summary>
-        /// Envía la venta a la API en el formato correcto.
-        /// </summary>
         public async Task RegistrarVentaAsync()
         {
-
             if (ProductoId <= 0 || CantidadVendida <= 0)
             {
-                MessageBox.Show("Por favor, ingresa un ID de producto y una cantidad válida.", "Datos incompletos", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Por favor, ingresa un ID de producto y una cantidad válida.",
+                               "Datos incompletos",
+                               MessageBoxButton.OK,
+                               MessageBoxImage.Warning);
                 return;
             }
 
-            // Crea la venta con la lista de detalles
-            // ... dentro de RegistrarVentaAsync()
             var venta = new VentaDto
             {
                 Detalles = new List<VentaDetalleDto>
-                {
-                    new VentaDetalleDto
-                    {
-                        ProductoId = this.ProductoId,
-                        Cantidad = this.CantidadVendida
-                    }
-                },
-                            Fecha = DateTime.Now
+        {
+            new VentaDetalleDto
+            {
+                ProductoId = this.ProductoId,
+                Cantidad = this.CantidadVendida
+            }
+        },
+                Fecha = DateTime.Now
             };
-
-            // Serializa el objeto a JSON
-            string json = JsonSerializer.Serialize(venta, new JsonSerializerOptions { WriteIndented = true });
-
-            // Muestra el JSON en consola
-            Console.WriteLine(json);
-
-            // O en un MessageBox (útil en WPF)
-            MessageBox.Show(json, "JSON enviado a la API");
 
             try
             {
-                await _servicio.RegistrarVentaAsync(venta);
-                MessageBox.Show("Venta registrada correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-                ProductoId = 0;
-                NombreProducto = string.Empty;
-                CantidadVendida = 0;
+                // Versión modificada para manejar la respuesta
+                var response = await _servicio.RegistrarVentaAsync(venta);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    MessageBox.Show("Venta registrada correctamente.",
+                                  "Éxito",
+                                  MessageBoxButton.OK,
+                                  MessageBoxImage.Information);
+
+                    ProductoId = 0;
+                    NombreProducto = string.Empty;
+                    CantidadVendida = 0;
+                }
+            }
+            catch (HttpRequestException httpEx)
+            {
+                string errorMessage = httpEx.StatusCode switch
+                {
+                    HttpStatusCode.BadRequest => "Datos de venta inválidos. Verifica los detalles.",
+                    HttpStatusCode.NotFound => "Producto no encontrado en el inventario.",
+                    _ => $"Error al comunicarse con el servidor: {httpEx.Message}"
+                };
+
+                MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al registrar la venta: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Error inesperado: {ex.Message}",
+                              "Error",
+                              MessageBoxButton.OK,
+                              MessageBoxImage.Error);
             }
+        }
+
+        private async Task<string> ObtenerDetallesErrorAsync(HttpRequestException ex)
+        {
+            // Si tu servicio devuelve detalles de error en el contenido de la respuesta
+            // puedes implementar aquí la lógica para extraerlos
+            // Ejemplo simplificado:
+            return ex.Message;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

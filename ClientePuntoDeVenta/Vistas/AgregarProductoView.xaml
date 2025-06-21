@@ -7,27 +7,33 @@
         ResizeMode="NoResize"
         Height="720" 
         Width="1280"
-        Background="#1E1E2F"
+        Background="{StaticResource Fondo}"
         Foreground="White">
 
     <StackPanel>
-        <!-- Barra de título -->
-        <DockPanel Background="#3A3A5A" Height="60" LastChildFill="False">
-            <TextBlock Text="AGREGAR PRODUCTO" 
-                  FontSize="18" 
-                  FontWeight="Bold"
-                  VerticalAlignment="Center"
-                  Margin="20,0"/>
+        <!-- Barra de título con estilo modular -->
+        <DockPanel Style="{StaticResource TitleBarStyle}">
+            
+            <TextBlock Text="Agregar Nuevo Producto" 
+               Foreground="White" 
+               FontSize="16"
+               VerticalAlignment="Center"
+               Margin="15,0"/>
 
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                <Button Content="×" 
-                   FontSize="20" 
-                   Width="60" 
-                   Height="60"
-                   Background="MediumVioletRed" 
-                   Foreground="White" 
-                   BorderThickness="0"
-                   Click="CerrarVentana_Click"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
+                
+                <!-- Botones con estilos modulares -->
+                <Button Style="{StaticResource WindowControlButtonStyle}" 
+                    Click="MinimizarVentana_Click" 
+                    Background="{StaticResource Minimizar}"
+                    Content="_" FontSize="20"/>
+
+                <Button Style="{StaticResource WindowControlButtonStyle}"
+                    Click="CerrarVentana_Click"
+                    Background="{StaticResource Cerrar}"
+                    Content="×" 
+                    FontSize="20"/>
+                
             </StackPanel>
         </DockPanel>
 
@@ -40,12 +46,7 @@
                       VerticalAlignment="Center"
                       FontSize="16"/>
                 <TextBox Text="{Binding Nombre, UpdateSourceTrigger=PropertyChanged}" 
-                    Width="300"
-                    Height="40"
-                    Background="#3A3A5A"
-                    Foreground="White"
-                    BorderBrush="#6C5B7B"
-                    CaretBrush="White" TextChanged="TextBox_TextChanged"/>
+                    Style="{StaticResource TextboxGenerico}" TextChanged="TextBox_TextChanged"/>
             </StackPanel>
 
             <!-- Campo Cantidad -->
@@ -55,12 +56,7 @@
                       VerticalAlignment="Center"
                       FontSize="16"/>
                 <TextBox Text="{Binding Cantidad, UpdateSourceTrigger=PropertyChanged}" 
-                    Width="300"
-                    Height="40"
-                    Background="#3A3A5A"
-                    Foreground="White"
-                    BorderBrush="#6C5B7B"
-                    CaretBrush="White"/>
+                    Style="{StaticResource TextboxGenerico}"/>
             </StackPanel>
 
             <!-- Campo Precio -->
@@ -70,43 +66,32 @@
                       VerticalAlignment="Center"
                       FontSize="16"/>
                 <TextBox Text="{Binding Precio, UpdateSourceTrigger=PropertyChanged}" 
-                    Width="300"
-                    Height="40"
-                    Background="#3A3A5A"
-                    Foreground="White"
-                    BorderBrush="#6C5B7B"
-                    CaretBrush="White"/>
+                    Style="{StaticResource TextboxGenerico}"/>
             </StackPanel>
 
             <!-- Botón Agregar -->
             <Button 
-               Width="300"
-               Height="80"
-               FontSize="24"
-               FontWeight="Bold"
-               HorizontalAlignment="Center"
-               Margin="0,40,0,0"
-               Background="#50C878"
-               BorderBrush="#8D6BB5"
-               Foreground="White"
-               Click="AgregarProducto_Click">
+                Style="{StaticResource BotonAceptar}"
+                Click="AgregarProducto_Click">
+                
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
-                         BorderBrush="{TemplateBinding BorderBrush}"
-                         BorderThickness="1"
-                         CornerRadius="5">
+                              BorderBrush="{TemplateBinding BorderBrush}"
+                              CornerRadius="5"> 
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Agregar Producto" VerticalAlignment="Center"/>
                     <Image Source="/Imagenes/icon_agregar.png" Width="30" Height="auto" HorizontalAlignment="Right" Margin="8"/>
-
                 </StackPanel>
+
             </Button>
+
         </StackPanel>
     </StackPanel>
 </Window>

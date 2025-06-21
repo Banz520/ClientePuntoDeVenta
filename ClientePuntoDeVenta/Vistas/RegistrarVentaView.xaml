@@ -7,27 +7,31 @@
         ResizeMode="NoResize"
         Height="720" 
         Width="1280"
-        Background="#1E1E2F"
+        Background="{StaticResource Fondo}"
         Foreground="White">
 
     <StackPanel>
-        <!-- Barra de título -->
-        <DockPanel Background="#3A3A5A" Height="60" LastChildFill="False">
-            <TextBlock Text="REGISTRAR VENTA" 
-                  FontSize="18" 
-                  FontWeight="Bold"
-                  VerticalAlignment="Center"
-                  Margin="20,0"/>
+        <!-- Barra de título con estilo modular -->
+        <DockPanel Style="{StaticResource TitleBarStyle}">
+            <TextBlock Text="Menú Principal - Punto de Venta" 
+               Foreground="White" 
+               FontSize="16"
+               VerticalAlignment="Center"
+               Margin="15,0"/>
 
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                <Button Content="×" 
-                   FontSize="20" 
-                   Width="60" 
-                   Height="60"
-                   Background="MediumVioletRed" 
-                   Foreground="White" 
-                   BorderThickness="0"
-                   Click="CerrarVentana_Click"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
+                <!-- Botones con estilos modulares -->
+                <Button Style="{StaticResource WindowControlButtonStyle}" 
+                Click="MinimizarVentana_Click" 
+                Background="{StaticResource Minimizar}">
+                    <TextBlock Text="_" FontSize="20"/>
+                </Button>
+
+                <Button Style="{StaticResource WindowControlButtonStyle}"
+                Click="CerrarVentana_Click"
+                Background="{StaticResource Cerrar}"
+                Content="×" 
+                FontSize="20"/>
             </StackPanel>
         </DockPanel>
 
@@ -40,12 +44,7 @@
                       VerticalAlignment="Center"
                       FontSize="16"/>
                 <TextBox Text="{Binding ProductoId, UpdateSourceTrigger=PropertyChanged}" 
-                    Width="300"
-                    Height="40"
-                    Background="#3A3A5A"
-                    Foreground="White"
-                    BorderBrush="#6C5B7B"
-                    CaretBrush="White"/>
+                   Style="{StaticResource TextboxGenerico}"/>
             </StackPanel>
 
             <!-- Campo NombreProducto -->
@@ -55,12 +54,7 @@
                       VerticalAlignment="Center"
                       FontSize="16"/>
                 <TextBox Text="{Binding NombreProducto, UpdateSourceTrigger=PropertyChanged}" 
-                    Width="300"
-                    Height="40"
-                    Background="#3A3A5A"
-                    Foreground="White"
-                    BorderBrush="#6C5B7B"
-                    CaretBrush="White"/>
+                    Style="{StaticResource TextboxGenerico}"/>
             </StackPanel>
 
             <!-- Campo CantidadVendida -->
@@ -70,31 +64,17 @@
                       VerticalAlignment="Center"
                       FontSize="16"/>
                 <TextBox Text="{Binding CantidadVendida, UpdateSourceTrigger=PropertyChanged}" 
-                    Width="300"
-                    Height="40"
-                    Background="#3A3A5A"
-                    Foreground="White"
-                    BorderBrush="#6C5B7B"
-                    CaretBrush="White"/>
+                   Style="{StaticResource TextboxGenerico}"/>
             </StackPanel>
 
             <!-- Botón Registrar Venta -->
             <Button 
-               Width="300"
-               Height="80"
-               FontSize="24"
-               FontWeight="Bold"
-               HorizontalAlignment="Center"
-               Margin="0,40,0,0"
-               Background="#50C878"
-               BorderBrush="#8D6BB5"
-               Foreground="White"
+               Style="{StaticResource BotonAceptar}"
                Click="RegistrarVenta_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
                          BorderBrush="{TemplateBinding BorderBrush}"
-                         BorderThickness="1"
                          CornerRadius="5">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>

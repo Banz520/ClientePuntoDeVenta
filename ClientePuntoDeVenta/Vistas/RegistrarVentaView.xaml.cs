@@ -20,6 +20,10 @@ namespace ClientePuntoDeVenta.Vistas
             await _viewModel.RegistrarVentaAsync();
         }
 
+        private void MinimizarVentana_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
         private void CerrarVentana_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

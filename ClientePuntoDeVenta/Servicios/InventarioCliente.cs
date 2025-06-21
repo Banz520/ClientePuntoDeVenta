@@ -46,12 +46,15 @@ public class InventarioCliente
     }
 
     // POST /ventas
-    public async Task RegistrarVentaAsync(VentaDto venta)
+    
+    public async Task<HttpResponseMessage> RegistrarVentaAsync(VentaDto venta)
     {
-
         var response = await _client.PostAsJsonAsync("ventas", venta);
         response.EnsureSuccessStatusCode();
+        return response;
     }
+
+
 
     // GET /inventario
     public async Task<List<ProductoDto>> ObtenerInventarioAsync()
